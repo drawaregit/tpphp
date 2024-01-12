@@ -3,6 +3,20 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
 </head>
 <body>
+  <div class="row">
+    <div class="jumbotron">
+<h2>La Bibiotheque est fermé bla  bla bla utilise notre service pour louer des livres bla bla bla!!!!</h2>
+</div>
+  <nav class="navbar navbar-expand-sm bg-light">
+    <?php include 'c_chercher_livre_par_auteur.php';?>
+    <div class="container-fluid">
+      <!-- Links -->
+      <ul class="navbar-nav">
+        
+      </ul>
+    </div>
+  
+  </nav>
     <div id="demo" class="carousel slide" data-bs-ride="carousel">
 
         <!-- Indicators/dots -->
@@ -10,6 +24,8 @@
           <button type="button" data-bs-target="#demo" data-bs-slide-to="0" class="active"></button>
           <button type="button" data-bs-target="#demo" data-bs-slide-to="1"></button>
           <button type="button" data-bs-target="#demo" data-bs-slide-to="2"></button>
+          <button type="button" data-bs-target="#demo" data-bs-slide-to="3"></button>
+          <button type="button" data-bs-target="#demo" data-bs-slide-to="4"></button>
         </div>
       
         <!-- The slideshow/carousel -->
