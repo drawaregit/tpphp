@@ -28,3 +28,4 @@ try {
   echo "Une erreur est survenue lors de l'insertion.";
 }
 ?>
+</body>
