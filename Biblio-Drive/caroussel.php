@@ -6,8 +6,19 @@
  <meta http-equiv="X-UA-Compatible" content="ie=edge">
  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
  <title>Accueil - Biblio Drive</title>
+ <script src="https://cdn.jsdelivr.net/npm/jquery@3.7.1/dist/jquery.slim.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.bundle.min.js"></script>
+  <style>
+  /* Make the image fully responsive */
+  .carousel-inner img {
+    width: auto%;
+    height: 100;
+}
+  </style>
 </head>
 <body>
+   <h1> LES DERNIERS AJOUTS </h1>
 <div id="demo" class="carousel slide" data-ride="carousel">
 
 <!-- Indicators -->
@@ -19,7 +30,7 @@
 
 <?php 
 require_once('conf/connexion.php');
-$stmt = $connexion->prepare("SELECT image from livre ORDER BY nolivre DESC LIMIT 3");
+$stmt = $connexion->prepare("SELECT image from livre ORDER BY dateajout DESC LIMIT 3");
 ?>
 
 <!-- The slideshow -->

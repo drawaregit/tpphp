@@ -1,6 +1,24 @@
 <html>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>Bootstrap Example</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css">
+  <script src="https://cdn.jsdelivr.net/npm/jquery@3.7.1/dist/jquery.slim.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.bundle.min.js"></script>
+</head>
 <body>
-<?php include 'blablainfofermeture.php';?>
+<nav class="navbar navbar-expand-sm bg-white navbar-dark">
+<?php include 'blablainfofermeture.php';?> <br>
 <?php include 'recher_auteur_test.php';?>
+   <a class="navbar-brand" href="#">
+    <img src="logobibliotheque.jpg" alt="Logo" style="width:100px;">
+  </a>
+</nav>
+
+
 </body>
 </html>

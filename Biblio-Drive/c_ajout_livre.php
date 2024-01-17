@@ -10,19 +10,19 @@
 
 <?php
 require_once('conf/connexion.php');
-
+$stmt = $connexion->prepare("SELECT nom, noauteur from auteur");
+$stmt->execute();
+$nomsauteurs = $stmt->fetchAll();
 if(!isset($_POST['btnEnvoyer'])) 
 {/* L'entrée btnEnvoyer est vide = le formulaire n'a pas été posté, on affiche le formulaire */
   echo '
   <form action="" method="POST">
-  <select name="nom" size="1">
-    <option>lundi
-    <option>mardi
-    <option>mercredi
-    <option>jeudi
-    <option>vendredi
-    </select>
-  <p>Titre: <input type="text" name="txttitre" /></p>
+  <select name="txtnoauteur" size="1">';
+  foreach ($nomsauteurs as $row) {
+    echo '<option value="'.$row['noauteur'].'"> '.$row['nom'].' </option>'
+  ;}
+  echo '</select>
+ <p>Titre: <input type="text" name="txttitre" /></p>
   <p>ISBN13: <input type="text" name="txtisbn" /></p>
   <p>Annee parution: <input type="text" name="txtannédeparution" /></p>
   <p>Resume: <textarea name="txtresume" rows="5" cols="40"></textarea></p>

@@ -1,42 +1,58 @@
+<!DOCTYPE html>
+<html>
+<head>
+</head>
+
 <?php
-    // Replace the following values with your actual database information
-    $servername = "localhost";
-    $username = "db_username";
-    $password = "db_password";
-    $dbname = "db_name";
 
-    // Create a new connection
-    $conn = new mysqli($servername, $username, $password, $dbname);
+require_once('conf/connexion.php');
 
-    // Check the connection
-    if ($conn->connect_error) {
-        die("Connection failed: " . $conn->connect_error);
+if (!isset($_SESSION["mail"])) 
+{
+    if(!isset($_POST['btnConnecter'])) 
+    {
+        echo '
+         <h1>CONNEXION</h1>
+         <form action="acceuilcopy.php" method="POST">
+         <p>Mail: <input type="text" name="txtmel" /></p>
+         <p>Mot de passe: <input type="text" name="txtmdp" /></p>
+         <p><input type="submit" name="btnConnecter" value="Envoyer" /></p>
+        </form>'; // Ajoutez un point-virgule ici
     }
+    else 
+    {
+        try {
+            $mail = $_POST["txtmel"];
+            $mdp = $_POST["txtmdp"];
+            $requete = "SELECT mel, motdepasse, profil FROM utilisateur WHERE mel = :mail AND motdepasse = :mdp";
+            $stmt = $connexion->prepare($requete);
+            $stmt->bindParam(':mail', $mail);
+            $stmt->bindParam(':mdp', $mdp);
+            $stmt->execute();
+            $resultat = $stmt->fetch(PDO::FETCH_ASSOC);
 
-    // Retrieve the submitted data from the form
-    $user = $_POST['username'];
-    $pass = $_POST['password'];
+            if ($resultat) {
+                $_SESSION["mail"] = $resultat['mel'];
+                $_SESSION["profil"] = $resultat['profil'];
+                header("Location: acceuilcopy.php");
+                exit(); // Add an exit statement here
+            } else {
+                echo "Email ou Mot de Passe invalide!";
+            }
 
-    // Prepare and bind the SQL statement
-    $stmt = $conn->prepare("SELECT * FROM users WHERE username = ? AND password = ?");
-    $stmt->bind_param("ss", $user, $pass);
-
-    // Execute the prepared statement
-    $stmt->execute();
-
-    // Store the result
-    $result = $stmt->get_result();
-
-    // Check if the user exists and if the password matches
-    if ($result->num_rows > 0) {
-        // If the user is found and the password matches, redirect to the desired page
-        header("Location: welcome.php");
-    } else {
-        // If the user does not exist or the password is incorrect, redirect back to the login page with an error message
-        header("Location: login.html?error=invalid");
+        }
+        catch (Exception $e) {
+            echo "Erreur : " . $e->getMessage();
+        }
     }
-
-    // Close the statement and the connection
-    $stmt->close();
-    $conn->close();
+} else {
+    echo '
+     <h1>WELCOME ' . $_SESSION["mail"] . '</h1>
+     <h1>Vous êtes ' . $_SESSION["profil"] . '!</h1>
+     <form action="deconnexion.php" method="POST">
+     <p><input type="submit" name="btnDeconnecter" value="Deconnexion" /></p>
+    </form>';
+}
 ?>
+</body>
+</html>

@@ -4,7 +4,7 @@ require_once('conf/connexion.php');
 if (isset($_GET["nolivre"]) && !empty(trim($_GET["nolivre"]))) {
     try {
         $nolivre = $_GET["nolivre"];
-        $requete = "SELECT titre, a.nom , isbn13, anneeparution, resume, dateajout FROM `livre` l INNER JOIN auteur a ON (a.noauteur = l.noauteur) WHERE nolivre = :nolivre;";
+        $requete = "SELECT titre, a.nom , isbn13, anneeparution, resume, dateajout, image FROM `livre` l INNER JOIN auteur a ON (a.noauteur = l.noauteur) WHERE nolivre = :nolivre;";
         $stmt = $connexion->prepare($requete);
         $stmt->bindParam(':nolivre', $nolivre);
         $stmt->execute();
@@ -20,7 +20,12 @@ if (isset($_GET["nolivre"]) && !empty(trim($_GET["nolivre"]))) {
             echo "<li>" . $resultat['dateajout'] . "</li>";
             
             echo "</ul>";
-        } else {
+            echo '<img src="couvertures/' . $resultat['image'] . '" max-width="1100" max-height="500">';
+            if (!isset($_SESSION["mail"])) 
+        {
+    echo 'tu es pas connecté!';
+}}
+         else {
             echo "Aucun résultat trouvé pour le numéro de livre spécifié.";
         }
     } catch (Exception $e) {

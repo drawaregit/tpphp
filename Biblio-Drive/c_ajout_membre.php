@@ -36,7 +36,8 @@ else
   $adresse = $_POST["txtadresse"];
   $ville = $_POST["txtville"];
   $codepostale = $_POST["txtcodepostal"];
-  $requete = "INSERT INTO utilisateur(mel, motdepasse, nom, prenom, adresse, ville, codepostal) VALUES(:mail, :mdp, :nom, :prenom, :adresse, :ville, :codepostale)";
+  $profil = "membre";
+  $requete = "INSERT INTO utilisateur(mel, motdepasse, nom, prenom, adresse, ville, codepostal, profil) VALUES(:mail, :mdp, :nom, :prenom, :adresse, :ville, :codepostale, :profil)";
   $stmt = $connexion->prepare($requete);
   $stmt->bindParam(':mail', $mail);
   $stmt->bindParam(':mdp', $mdp);
@@ -45,6 +46,7 @@ else
   $stmt->bindParam(':adresse', $adresse);
   $stmt->bindParam(':ville', $ville);
   $stmt->bindParam(':codepostale', $codepostale);
+  $stmt->bindParam(':profil', $profil);
   $stmt->execute();
   echo $stmt->rowCount(), " ligne(s) a(ont) été insérée(s).";
 } catch (Exception $e) {
