@@ -34,8 +34,9 @@ if (!isset($_SESSION["mail"]))
             if ($resultat) {
                 $_SESSION["mail"] = $resultat['mel'];
                 $_SESSION["profil"] = $resultat['profil'];
+                $_SESSION["panier"] = array();
                 header("Location: acceuilcopy.php");
-                exit(); // Add an exit statement here
+                exit(); 
             } else {
                 echo "Email ou Mot de Passe invalide!";
             }

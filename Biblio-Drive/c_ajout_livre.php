@@ -2,13 +2,18 @@
 <!DOCTYPE html>
 <html>
 <head>
-<title>Ajout Membre - Bibio Drive</title>
+<title>Ajout Livre - Bibio Drive</title>
 </head>
 <body>
 
 
 
 <?php
+session_start();
+if (!isset($_SESSION['profil']) || $_SESSION['profil'] != 'admin') {
+    header('Location: acceuilcopy.php');
+    exit();
+}
 require_once('conf/connexion.php');
 $stmt = $connexion->prepare("SELECT nom, noauteur from auteur");
 $stmt->execute();

@@ -10,6 +10,11 @@
 
 
 <?php
+session_start();
+if (!isset($_SESSION['profil']) || $_SESSION['profil'] != 'admin') {
+    header('Location: acceuilcopy.php');
+    exit();
+}
 require_once('conf/connexion.php');
 
 if(!isset($_POST['btnEnvoyer'])) 

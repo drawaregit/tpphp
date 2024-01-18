@@ -21,11 +21,7 @@ if (isset($_GET["nolivre"]) && !empty(trim($_GET["nolivre"]))) {
             
             echo "</ul>";
             echo '<img src="couvertures/' . $resultat['image'] . '" max-width="1100" max-height="500">';
-            if (!isset($_SESSION["mail"])) 
-        {
-    echo 'tu es pas connecté!';
-}}
-         else {
+        } else {
             echo "Aucun résultat trouvé pour le numéro de livre spécifié.";
         }
     } catch (Exception $e) {
