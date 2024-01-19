@@ -22,18 +22,24 @@ if (isset($_GET["nolivre"]) && !empty(trim($_GET["nolivre"]))) {
             
             echo "</ul>";
             echo '<img src="couvertures/' . $resultat['image'] . '" max-width="1100" max-height="500">';
+
+
             if (!isset($_SESSION['profil']) || $_SESSION['profil'] != 'membre') {
                 echo 'connectez vous pour rajouter des livres dans votre panier.';
                 exit();
-            } else 
+            } 
+            
+            else 
+
             {  
                 $panier = $_SESSION['panier'];
-                print_r($panier) ;
                 if (in_array($nolivre, $panier, TRUE))
                 {
                     echo 'livre dans le panier!';
                 }
+
                else
+
                { 
                 echo '<form method="POST">
                 <p><input type="submit" name="btnajoutpanier" value="Ajouter au panier" /></p>
@@ -44,13 +50,17 @@ if (isset($_GET["nolivre"]) && !empty(trim($_GET["nolivre"]))) {
             }
                }
             }
-        } else {
+        } 
+        else 
+        {
             echo "Aucun résultat trouvé pour le numéro de livre spécifié.";
         }
     } catch (Exception $e) {
         echo "Une erreur est survenue lors de la recherche.";
     }
-} else {
+} 
+else 
+{
     echo "Veuillez spécifier un numéro de livre.";
 }
 
