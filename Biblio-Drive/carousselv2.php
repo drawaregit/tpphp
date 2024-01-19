@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <title>Bootstrap Example</title>
+  
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css">
@@ -10,10 +10,7 @@
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.bundle.min.js"></script>
   <style>
   /* Make the image fully responsive */
-  .carousel-inner img {
-    width: 100%;
-    height: 100%;
-  }
+  
   </style>
 </head>
 <body>
@@ -32,7 +29,7 @@
 
   <?php
 require_once('conf/connexion.php');
-$stmt = $connexion->prepare("SELECT image from livre ORDER BY dateajout DESC LIMIT 3");
+$stmt = $connexion->prepare("SELECT image from livre ORDER BY nolivre DESC LIMIT 3");
 $stmt->execute();
 $images = $stmt->fetchAll();
 $count = 0;
@@ -43,7 +40,7 @@ foreach ($images as $row) {
     } else {
         echo '<div class="carousel-item">';
     }
-    echo '<img src="couvertures/' . $row['image'] . '" max-width="1100" max-height="500">';
+    echo '<img src="couvertures/' . $row['image'] . '"class="d-block w-100" >';
     echo '</div>';
 }
 ?>

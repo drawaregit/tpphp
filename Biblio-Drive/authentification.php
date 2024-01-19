@@ -1,3 +1,6 @@
+<?php
+ob_start();
+?>
 <!DOCTYPE html>
 <html>
 <head>
@@ -35,7 +38,7 @@ if (!isset($_SESSION["mail"]))
                 $_SESSION["mail"] = $resultat['mel'];
                 $_SESSION["profil"] = $resultat['profil'];
                 $_SESSION["panier"] = array();
-                header("Location: acceuilcopy.php");
+                header("Location:acceuilcopy.php");
                 exit(); 
             } else {
                 echo "Email ou Mot de Passe invalide!";
@@ -48,7 +51,7 @@ if (!isset($_SESSION["mail"]))
     }
 } else {
     echo '
-     <h1>WELCOME ' . $_SESSION["mail"] . '</h1>
+     <h1>BIENVENUE ' . $_SESSION["mail"] . '</h1>
      <h1>Vous êtes ' . $_SESSION["profil"] . '!</h1>
      <form action="deconnexion.php" method="POST">
      <p><input type="submit" name="btnDeconnecter" value="Deconnexion" /></p>
@@ -57,3 +60,6 @@ if (!isset($_SESSION["mail"]))
 ?>
 </body>
 </html>
+<?php
+ob_end_flush();
+?>

@@ -5,7 +5,7 @@ require_once('conf/connexion.php');
 if (isset($_GET["nolivre"]) && !empty(trim($_GET["nolivre"]))) {
     try {
         $nolivre = $_GET["nolivre"];
-        $requete = "SELECT titre, a.nom , isbn13, anneeparution, resume, dateajout, image, nolivre FROM `livre` l INNER JOIN auteur a ON (a.noauteur = l.noauteur) WHERE nolivre = :nolivre;";
+        $requete = "SELECT titre, a.nom , isbn13, anneeparution, resume, dateajout, image FROM `livre` l INNER JOIN auteur a ON (a.noauteur = l.noauteur) WHERE nolivre = :nolivre;";
         $stmt = $connexion->prepare($requete);
         $stmt->bindParam(':nolivre', $nolivre);
         $stmt->execute();
@@ -25,24 +25,8 @@ if (isset($_GET["nolivre"]) && !empty(trim($_GET["nolivre"]))) {
             if (!isset($_SESSION['profil']) || $_SESSION['profil'] != 'membre') {
                 echo 'connectez vous pour rajouter des livres dans votre panier.';
                 exit();
-            } else 
+            }else 
             {  
-                $panier = $_SESSION['panier'];
-                print_r($panier) ;
-                if (in_array($nolivre, $panier, TRUE))
-                {
-                    echo 'livre dans le panier!';
-                }
-               else
-               { 
-                echo '<form method="POST">
-                <p><input type="submit" name="btnajoutpanier" value="Ajouter au panier" /></p>
-               </form>';
-               if (isset($_POST['btnajoutpanier'])) {
-                array_push($_SESSION['panier'], $nolivre);
-                echo "<meta http-equiv='refresh' content='0'>";
-            }
-               }
             }
         } else {
             echo "Aucun résultat trouvé pour le numéro de livre spécifié.";

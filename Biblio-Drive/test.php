@@ -1,47 +1,10 @@
-<?php
-require_once('conf/connexion.php');
+<?php 
+// Assuming the session variable "panier" contains an array of nolivre values
+session_start();
 
-$sql = "SELECT nom FROM auteur";
-$result = $conn->query($sql);
-$nomArray = array();
+// Add a "1" to the "panier" array session variable
+array_push($_SESSION['panier'], 1);
 
-if ($result->num_rows > 0) {
-    while ($row = $result->fetch_assoc()) {
-        $nomArray[] = $row;
-    }
-} else {
-    echo "0 results";
-}
-$conn->close();
+// Print the updated array
+print_r($_SESSION['panier']);
 ?>
-
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Scrolling Box Example</title>
-    <link rel="stylesheet" href="styles.css">
-</head>
-<body>
-    <div class="scrolling-box">
-        <table id="auteur-table">
-            <thead>
-                <tr>
-                    <th>ID</th>
-                    <th>Nom</th>
-                </tr>
-            </thead>
-            <tbody>
-                <?php foreach ($nomArray as $nom) { ?>
-                    <tr>
-                        <td><?php echo $nom['id']; ?></td>
-                        <td><?php echo $nom['nom']; ?></td>
-                    </tr>
-                <?php } ?>
-            </tbody>
-        </table>
-    </div>
-    <script src="script.js"></script>
-</body>
-</html>
