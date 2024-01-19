@@ -15,7 +15,6 @@
 <?php include 'blablainfofermeture.php';?> <br>
 <?php include 'recher_auteur_test.php';?>
 <?php 
-
 if (isset($_SESSION['profil']) && $_SESSION['profil'] == 'admin') {
    echo '<a href="c_ajout_membre.php" class="button">Ajout Membre</a>
    <a href="c_ajout_livre.php" class="button">Ajout Livre</a>';

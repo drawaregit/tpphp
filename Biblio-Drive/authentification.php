@@ -1,6 +1,4 @@
-<?php
-ob_start();
-?>
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -15,7 +13,7 @@ if (!isset($_SESSION["mail"]))
     if(!isset($_POST['btnConnecter'])) 
     {
         echo '
-         <h1>CONNEXION</h1>
+         <h1>AUTHENTIFICATION</h1>
          <form action="acceuilcopy.php" method="POST">
          <p>Mail: <input type="text" name="txtmel" /></p>
          <p>Mot de passe: <input type="text" name="txtmdp" /></p>

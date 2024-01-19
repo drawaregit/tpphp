@@ -15,7 +15,7 @@ else
 {
     echo "<ul>";
  foreach ($_SESSION['panier'] as $row) {
-    echo '<li><a href="infolivre.php?nolivre='.$row.'">"test"</a></li>';
+    echo '<li><a href="infolivre.php?nolivre='.$row.'">livre ici</a></li>';
  }
 }
 }

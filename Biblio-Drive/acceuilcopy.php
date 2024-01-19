@@ -47,5 +47,8 @@ require_once('conf/connexion.php'); ?>
     </div>
 </div>
 
+<div class="youtube_player" videoID="PJCvmeRILLk" width="560" height="315" theme="light" rel="0" controls="1" showinfo="1" autoplay="0"></div>
+
+
 
 </body>
